@@ -16,7 +16,7 @@ const Pagination = ({ count }: { count: number }) => {
 
   const handleChangePage = (type: string) => {
     type === "prev"
-      ? params.set("page", (parseInt(page) - 1))
+      ? params.set("page", parseInt(page) - 1)
       : params.set("page", parseInt(page) + 1);
     replace(`${pathname}?${params}`);
   };
@@ -25,7 +25,7 @@ const Pagination = ({ count }: { count: number }) => {
       <button
         onClick={() => handleChangePage("prev")}
         disabled={!hasPrev}
-        className="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        className="flex items-center disabled:cursor-not-allowed justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
       >
         Previous
       </button>
@@ -33,7 +33,7 @@ const Pagination = ({ count }: { count: number }) => {
       <button
         onClick={() => handleChangePage("next")}
         disabled={!hasNext}
-        className="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        className="flex items-center disabled:cursor-not-allowed justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
       >
         Next
       </button>
