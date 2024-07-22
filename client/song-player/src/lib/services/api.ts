@@ -11,8 +11,8 @@ export const songApi = createApi({
   reducerPath: "songApi",
   baseQuery: baseQuery,
   endpoints: (builder) => ({
-    getSongs: builder.query<Song[], {}>({
-      query: () => `songs`,
+    getSongs: builder.query<{count:number, songs:Song[]}, { page: number; q: string, genre: string }>({
+      query: ({ page, q, genre}) => `songs?page=${page}&q=${q}&genre=${genre}`,
     }),
     getSong: builder.query({
       query: (id) => ({

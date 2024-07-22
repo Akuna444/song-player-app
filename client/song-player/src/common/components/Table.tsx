@@ -4,12 +4,14 @@ import { useDeleteSongMutation } from "@/lib/services/api";
 import { Song } from "../types/songs";
 import { FaPen, FaEye, FaTrash } from "react-icons/fa";
 import Link from "next/link";
+import Pagination from "./Pagination";
 
 interface SongListProps {
+  count: number;
   songs: Song[];
 }
 
-const Table: React.FC<SongListProps> = ({ songs }) => {
+const Table: React.FC<SongListProps> = (props) => {
   const [deleteSong] = useDeleteSongMutation();
 
   async function deleteSongHandler(id: string) {
@@ -22,19 +24,9 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
   return (
     <div>
       <div className="relative overflow-x-auto">
-        <div className="w-full flex justify-end">
-          <Link href="/create">
-            <button
-              type="button"
-              className="text-white bg-primary hover:bg-primaryHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800"
-            >
-              Add New
-            </button>{" "}
-          </Link>
-        </div>
         <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
           <thead className="text-white">
-            {songs?.map((song: Song) => {
+            {props.songs?.map((song: Song) => {
               return (
                 <tr
                   key={song._id}
@@ -50,7 +42,7 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
             })}
           </thead>
           <tbody className="flex-1 sm:flex-none">
-            {songs?.map((song: Song) => {
+            {props.songs?.map((song: Song) => {
               return (
                 <tr
                   key={song._id}
@@ -87,6 +79,7 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
             })}
           </tbody>
         </table>
+        <Pagination count={props.count} />
       </div>
     </div>
   );

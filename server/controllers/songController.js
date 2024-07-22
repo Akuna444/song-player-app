@@ -13,10 +13,25 @@ exports.createSong = async (req, res) => {
 
 // Get all songs
 exports.getAllSongs = async (req, res) => {
+  const { q = "", page = 1, genre=""} = req.query;
+  console.log(q, page, genre, "dkdk");
+  const regex = new RegExp(q, "i");
+  const genreReg = new RegExp(genre, "i")
+
+  const ITEM_PER_PAGE = 10;
+
   try {
-    const songs = await Song.find();
-    res.status(200).json(songs);
+    const count = await Song.find({
+      title: { $regex: regex }, genre: {$regex: genreReg}
+    }).countDocuments();
+    const songs = await Song.find({ title: { $regex: regex }, genre: {$regex: genreReg} })
+      .sort({ createdAt: -1 })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+    console.log("co", count, songs);
+    return res.status(200).json({ count, songs });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
