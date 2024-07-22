@@ -9,6 +9,7 @@ import { genres } from "@/constants/genres";
 import { useGetSongQuery } from "@/lib/services/api";
 import { useParams } from "next/navigation";
 import Spinner from "@/common/components/Spinner";
+import toast from "react-hot-toast";
 
 const songSchema = z.object({
   title: z.string().nonempty("Title is required"),
@@ -44,6 +45,7 @@ const EditSongs = () => {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const res = await updateSong({ id, ...data });
     if (res) {
+      toast.success("Updated Successfully");
       window.location.href = "/";
     }
   };

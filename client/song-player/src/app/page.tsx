@@ -1,15 +1,14 @@
 "use client";
 import Table from "@/common/components/Table";
 import { useGetSongsQuery } from "@/lib/services/api";
-import Spinner from "@/common/components/Spinner";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Search from "@/common/components/Search";
 import { genres } from "@/constants/genres";
-import Link from "next/link";
 import Stats from "@/common/components/Stats";
 import Button from "@/common/components/Button";
 import HomeSkeleton from "@/common/components/Skeletons/HomeSkeleton";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [genre, setGenre] = useState<string>("");
@@ -19,6 +18,9 @@ export default function Home() {
 
   const { data, error, isLoading } = useGetSongsQuery({ page, q, genre });
 
+  if (error) {
+    toast.error("Failed to fetch");
+  }
   return (
     <div className="section-padding">
       {isLoading ? (

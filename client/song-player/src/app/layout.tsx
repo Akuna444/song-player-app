@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import StoreProvider from "@/lib/Provider/StoreProvider";
 import NavBar from "@/common/components/NavBar";
+import { Toaster } from "react-hot-toast";
 
 const inter = Open_Sans({
   weight: ["400", "700"], // Adjust the weights you need
@@ -23,7 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <StoreProvider>
         <body className={inter.className}>
+          <Toaster position="top-center" />
           <NavBar />
+
           {children}
         </body>
       </StoreProvider>

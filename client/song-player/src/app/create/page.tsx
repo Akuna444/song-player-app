@@ -6,6 +6,7 @@ import { z } from "zod";
 import { useCreateSongMutation } from "@/lib/services/api";
 import { useRouter } from "next/navigation";
 import { genres } from "@/constants/genres";
+import toast from "react-hot-toast";
 
 const songSchema = z.object({
   title: z.string().nonempty("Title is required"),
@@ -30,7 +31,9 @@ const AddSongs = () => {
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const res = await createSong(data);
+
     if (res) {
+      toast.success("Successfully created");
       window.location.href = "/";
     }
   };
