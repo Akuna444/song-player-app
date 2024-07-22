@@ -33,6 +33,12 @@ export const songApi = createApi({
         body: updatedSong,
       }),
     }),
+    deleteSong: builder.mutation({
+      query: (id) => ({
+        url: `/songs/${id}`,
+        method: "DELETE",
+      }),
+    }),
     // Add more endpoints as needed
   }),
 });
@@ -43,6 +49,7 @@ export const {
   useGetSongQuery,
   useUpdateSongMutation,
   useCreateSongMutation,
+  useDeleteSongMutation,
 } = songApi;
 
 // import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";

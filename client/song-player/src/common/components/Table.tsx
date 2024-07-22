@@ -1,5 +1,6 @@
 "use client";
 
+import { useDeleteSongMutation } from "@/lib/services/api";
 import { Song } from "../types/songs";
 import { useRouter } from "next/navigation";
 import { FaPen, FaEye, FaTrash } from "react-icons/fa";
@@ -10,6 +11,12 @@ interface SongListProps {
 
 const Table: React.FC<SongListProps> = ({ songs }) => {
   const router = useRouter();
+  const [deleteSong] = useDeleteSongMutation();
+
+  async function deleteSongHandler(id: string) {
+    const res = await deleteSong(id);
+  }
+
   return (
     <div>
       <div className="relative overflow-x-auto">
@@ -67,7 +74,12 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
                       onClick={() => router.push(`/edit/${song._id}`)}
                       className="text-green-500 hover:text-green-700"
                     />
-                    <FaTrash className="text-red-400 hover:text-red-700" />
+                    <FaTrash
+                      onClick={() => {
+                        deleteSongHandler(song._id);
+                      }}
+                      className="text-red-400 hover:text-red-700"
+                    />
                   </td>
                 </tr>
               );
