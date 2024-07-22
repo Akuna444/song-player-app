@@ -11,8 +11,11 @@ export const songApi = createApi({
   reducerPath: "songApi",
   baseQuery: baseQuery,
   endpoints: (builder) => ({
-    getSongs: builder.query<{count:number, songs:Song[]}, { page: number; q: string, genre: string }>({
-      query: ({ page, q, genre}) => `songs?page=${page}&q=${q}&genre=${genre}`,
+    getSongs: builder.query<
+      { count: number; songs: Song[] },
+      { page: number; q: string; genre: string }
+    >({
+      query: ({ page, q, genre }) => `songs?page=${page}&q=${q}&genre=${genre}`,
     }),
     getSong: builder.query({
       query: (id) => ({
@@ -39,6 +42,9 @@ export const songApi = createApi({
         method: "DELETE",
       }),
     }),
+    getStatistics: builder.query({
+      query: () => "/statistics",
+    }),
     // Add more endpoints as needed
   }),
 });
@@ -50,6 +56,7 @@ export const {
   useUpdateSongMutation,
   useCreateSongMutation,
   useDeleteSongMutation,
+  useGetStatisticsQuery,
 } = songApi;
 
 // import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";

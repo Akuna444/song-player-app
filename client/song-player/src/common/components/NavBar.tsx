@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FaChartBar, FaPlus } from "react-icons/fa";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -45,19 +46,20 @@ const NavBar = () => {
             <li>
               <a
                 href="/statistics"
-                className="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 dark:text-white md:dark:text-blue-500"
+                className="flex gap-1 py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 dark:text-white md:dark:text-blue-500"
                 aria-current="page"
               >
-                Statistics
+                <FaChartBar /> Statistics
               </a>
             </li>
             <li>
               <a
                 href="/create"
-                className="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 dark:text-white md:dark:text-blue-500"
+                className="flex gap-1 py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0 dark:text-white md:dark:text-blue-500"
                 aria-current="page"
               >
-                Create Song
+                <FaPlus />
+                Add Song
               </a>
             </li>
           </ul>

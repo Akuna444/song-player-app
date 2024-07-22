@@ -7,6 +7,9 @@ import { useState } from "react";
 import Search from "@/common/components/Search";
 import { genres } from "@/constants/genres";
 import Link from "next/link";
+import Stats from "@/common/components/Stats";
+import Button from "@/common/components/Button";
+import HomeSkeleton from "@/common/components/Skeletons/HomeSkeleton";
 
 export default function Home() {
   const [genre, setGenre] = useState<string>("");
@@ -19,9 +22,14 @@ export default function Home() {
   return (
     <div className="section-padding">
       {isLoading ? (
-        <Spinner />
+        <HomeSkeleton />
       ) : (
         <>
+          <Stats />
+          <div className="w-full flex justify-center mb-10">
+            <Button link="statistics" title="More Stats" />
+          </div>
+
           <div className="w-full flex-col flex md:flex-row gap-4  justify-between">
             <div className="mb-5">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -47,14 +55,7 @@ export default function Home() {
               </select>
             </div>
             <Search />
-            <Link className="md:mx-0 mx-auto" href="/create">
-              <button
-                type="button"
-                className="text-white  bg-primary hover:bg-primaryHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800"
-              >
-                Add New
-              </button>{" "}
-            </Link>
+            <Button link="create" title="Add New" />
           </div>
           {data &&
             (data.songs?.length === 0 ? (
