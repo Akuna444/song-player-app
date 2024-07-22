@@ -1,13 +1,16 @@
-import fetcher from '@/common/utils/fetcher';
-import ExampleClientComponent from '@/modules/ExampleClientComponent/page';
+"use client";
+import Table from "@/common/components/Table";
+import fetcher from "@/common/utils/fetcher";
+import ExampleClientComponent from "@/modules/ExampleClientComponent/page";
+import { useGetSongsQuery } from "@/lib/services/api";
 
-export default async function Home() {
-  const getData = await fetcher<any, any>({
-    path: '/users',
-    isExternal: true,
-  });
+export default function Home() {
+  const { data: songs, error, isLoading } = useGetSongsQuery("");
 
-  console.log(getData);
-
-  return <ExampleClientComponent />;
+  return (
+    <div className="section-padding">
+      <Table songs={songs} />
+      <ExampleClientComponent />{" "}
+    </div>
+  );
 }
