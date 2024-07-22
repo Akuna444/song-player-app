@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import StoreProvider from "@/lib/Provider/StoreProvider";
 import NavBar from "@/common/components/NavBar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Open_Sans({
+  weight: ["400", "700"], // Adjust the weights you need
+  subsets: ["latin"], // Adjust the subsets you need
+});
 
 export const metadata: Metadata = {
   title: "Next Redux Typescript Tailwind",

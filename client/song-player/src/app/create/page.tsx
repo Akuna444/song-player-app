@@ -35,7 +35,10 @@ const AddSongs = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-sm section-padding mx-auto"
+    >
       <div className="mb-5">
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Title

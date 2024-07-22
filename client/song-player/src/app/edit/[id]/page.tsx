@@ -9,7 +9,6 @@ import { genres } from "@/constants/genres";
 import { useGetSongQuery } from "@/lib/services/api";
 import { useParams } from "next/navigation";
 import Spinner from "@/common/components/Spinner";
-import { useState } from "react";
 
 const songSchema = z.object({
   title: z.string().nonempty("Title is required"),
@@ -41,12 +40,11 @@ const EditSongs = () => {
   }
 
   const [updateSong] = useUpdateSongMutation();
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const res = await updateSong({ id, ...data });
     if (res) {
-      router.push("/");
+      window.location.href = "/";
     }
   };
   return (
@@ -59,8 +57,8 @@ const EditSongs = () => {
             <p>No song found</p>
           ) : (
             <>
-              <div className="mb-5">
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              <div className="mb-5 section-padding">
+                <label className="block mb-2  text-sm font-medium text-gray-900 dark:text-white">
                   Title
                 </label>
                 <input

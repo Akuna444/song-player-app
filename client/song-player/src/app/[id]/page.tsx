@@ -4,6 +4,8 @@ import { useParams } from "next/navigation";
 import { useGetSongQuery } from "@/lib/services/api";
 import Spinner from "@/common/components/Spinner";
 import Image from "next/image";
+import { FaPen } from "react-icons/fa";
+import Link from "next/link";
 
 const Detail = () => {
   const { id } = useParams();
@@ -14,47 +16,37 @@ const Detail = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm mx-auto section-padding bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
-            <Image
+            {/* <Image
               width={400}
               height={400}
               className="rounded-t-lg"
               src="docs/images/blog/image-1.jpg"
               alt="alt"
-            />
+            /> */}
           </a>
           <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Noteworthy technology acquisitions 2021
-              </h5>
-            </a>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Title: {song.title}
+            </h5>
+
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
+              Artist: {song.artist}
             </p>
-            <a
-              href="#"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              Album: {song.album}
+            </p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              Genre: {song.genre}
+            </p>
+            <Link
+              href={`/edit/${song._id}`}
+              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Read more
-              <svg
-                className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </a>
+              Edit &nbsp;
+              <FaPen />
+            </Link>
           </div>
         </div>
       )}
