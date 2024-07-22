@@ -59,7 +59,10 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
                     {song.genre}
                   </td>
                   <td className=" flex gap-6 border-grey-light border hover:bg-gray-100 p-3  hover:font-medium cursor-pointer">
-                    <FaEye className="text-green-400 hover:text-green-700" />{" "}
+                    <FaEye
+                      onClick={() => router.push(`/${song._id}`)}
+                      className="text-green-400 hover:text-green-700"
+                    />{" "}
                     <FaPen
                       onClick={() => router.push(`/edit/${song._id}`)}
                       className="text-green-500 hover:text-green-700"

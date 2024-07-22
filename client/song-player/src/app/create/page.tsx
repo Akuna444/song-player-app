@@ -31,7 +31,7 @@ const AddSongs = () => {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const res = await createSong(data);
     if (res) {
-      router.push("/");
+      window.location.href = "/";
     }
   };
   return (
