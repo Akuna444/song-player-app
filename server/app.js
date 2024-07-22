@@ -10,10 +10,7 @@ app.use(express.json());
 app.use("/api", songRoutes);
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGODB_URI)
   .then(() =>
     app.listen(port, () => console.log(`Server running on port ${port}`))
   )
