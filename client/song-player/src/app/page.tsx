@@ -22,7 +22,7 @@ export default function Home() {
         <Spinner />
       ) : (
         <>
-          <div className="w-full flex justify-between">
+          <div className="w-full flex-col flex md:flex-row gap-4  justify-between">
             <div className="mb-5">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Filter by genre
@@ -47,10 +47,10 @@ export default function Home() {
               </select>
             </div>
             <Search />
-            <Link href="/create">
+            <Link className="md:mx-0 mx-auto" href="/create">
               <button
                 type="button"
-                className="text-white bg-primary hover:bg-primaryHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800"
+                className="text-white  bg-primary hover:bg-primaryHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800"
               >
                 Add New
               </button>{" "}

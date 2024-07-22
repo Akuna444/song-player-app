@@ -57,7 +57,7 @@ const EditSongs = () => {
             <p>No song found</p>
           ) : (
             <>
-              <div className="mb-5 section-padding">
+              <div className="mb-5 ">
                 <label className="block mb-2  text-sm font-medium text-gray-900 dark:text-white">
                   Title
                 </label>
