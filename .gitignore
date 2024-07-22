@@ -1,0 +1,4 @@
+/server/node_modules
+/client/song-player/node_modules
+/client/song-player/.env
+/server/.env
