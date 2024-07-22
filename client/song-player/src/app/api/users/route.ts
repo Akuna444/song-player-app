@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const response = await fetcher<any>({
-      path: '/users',
+      path: '/songs',
       isExternal: true,
     });
     return NextResponse.json(response);

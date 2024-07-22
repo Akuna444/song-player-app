@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useGetTheUsersQuery } from '@/lib/services/api';
-import Image from 'next/image';
-import React from 'react';
-import ExampleCounter from './components/Counter';
+import { useGetSongsQuery } from "@/lib/services/api";
+import Image from "next/image";
+import React from "react";
+import ExampleCounter from "./components/Counter";
 
 const ExampleClientComponent = () => {
-  const { data, isLoading, isError } = useGetTheUsersQuery('');
+  const { data, isLoading, isError } = useGetSongsQuery("");
   console.log(data);
 
   return (
