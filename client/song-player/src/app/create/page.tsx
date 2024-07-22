@@ -3,6 +3,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useCreateSongMutation } from "@/lib/services/api";
+import { useRouter } from "next/navigation";
 
 const songSchema = z.object({
   title: z.string().nonempty("Title is required"),
@@ -22,8 +24,14 @@ const AddSongs = () => {
     resolver: zodResolver(songSchema),
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
+  const [createSong] = useCreateSongMutation();
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    const res = await createSong(data);
+    if (res) {
+      router.push("/");
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">

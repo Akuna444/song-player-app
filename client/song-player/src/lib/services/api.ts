@@ -11,15 +11,22 @@ export const songApi = createApi({
   reducerPath: "songApi",
   baseQuery: baseQuery,
   endpoints: (builder) => ({
-    getSongs: builder.query<Song, {}>({
+    getSongs: builder.query<Song[], {}>({
       query: () => `songs`,
+    }),
+    createSong: builder.mutation<Song, object>({
+      query: (newSong) => ({
+        url: "/songs",
+        method: "POST",
+        body: newSong,
+      }),
     }),
     // Add more endpoints as needed
   }),
 });
 
 //Export API hooks for usage in components
-export const { useGetSongsQuery } = songApi;
+export const { useGetSongsQuery, useCreateSongMutation } = songApi;
 
 // import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
