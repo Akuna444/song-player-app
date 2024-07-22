@@ -21,6 +21,15 @@ exports.getAllSongs = async (req, res) => {
   }
 };
 
+// Get all songs
+exports.getSong = async (req, res) => {
+  try {
+    const songs = await Song.findById(req.params.id);
+    res.status(200).json(songs);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 // Update a song
 exports.updateSong = async (req, res) => {
   try {

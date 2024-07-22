@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post("/songs", validateSong, songController.createSong);
 router.get("/songs", songController.getAllSongs);
+router.get("/songs/:id", songController.getSong);
 router.put("/songs/:id", validateSong, songController.updateSong);
 router.delete("/songs/:id", songController.deleteSong);
 router.get("/statistics", songController.getStatistics);
