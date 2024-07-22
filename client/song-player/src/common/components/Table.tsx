@@ -24,7 +24,7 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
           <button
             type="button"
             onClick={() => router.push("/create")}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white bg-primary hover:bg-primaryHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800"
           >
             Add New
           </button>
@@ -35,7 +35,7 @@ const Table: React.FC<SongListProps> = ({ songs }) => {
               return (
                 <tr
                   key={song._id}
-                  className="bg-teal-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0"
+                  className="bg-primary flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0"
                 >
                   <th className="p-3 text-left w-[110px]">Title</th>
                   <th className="p-3 text-left w-[110px]">Artist</th>
