@@ -23,6 +23,7 @@ export const songApi = createApi({
       query: (id) => ({
         url: `/songs/${id}`,
       }),
+      providesTags: ["Song"],
     }),
     createSong: builder.mutation<Song, object>({
       query: (newSong) => ({
