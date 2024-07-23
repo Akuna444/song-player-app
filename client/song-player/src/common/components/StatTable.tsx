@@ -3,6 +3,7 @@
 interface Stat {
   _id: string;
   count: number;
+  songs?: number;
 }
 interface SongListProps {
   data: Stat[];
@@ -10,6 +11,7 @@ interface SongListProps {
 }
 
 const StatTable: React.FC<SongListProps> = ({ data, title }) => {
+  console.log(data, "daa");
   return (
     <div>
       <div className="relative overflow-x-auto">
@@ -40,7 +42,7 @@ const StatTable: React.FC<SongListProps> = ({ data, title }) => {
                     {stat._id}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                    {stat.count}
+                    {stat.count || stat.songs}
                   </td>
                 </tr>
               );

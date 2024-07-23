@@ -4,15 +4,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useCreateSongMutation } from "@/lib/services/api";
-import { useRouter } from "next/navigation";
 import { genres } from "@/constants/genres";
 import toast from "react-hot-toast";
+import { UploadButton } from "@uploadthing/react";
 
 const songSchema = z.object({
   title: z.string().nonempty("Title is required"),
   artist: z.string().nonempty("Artist is required"),
   album: z.string().nonempty("Album is required"),
   genre: z.string().nonempty("Genre is required"),
+  image: z.string().nonempty("Image is required"),
 });
 
 type FormFields = z.infer<typeof songSchema>;
@@ -21,13 +22,14 @@ const AddSongs = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormFields>({
+    mode: "onChange",
     resolver: zodResolver(songSchema),
   });
 
   const [createSong] = useCreateSongMutation();
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const res = await createSong(data);
@@ -107,13 +109,36 @@ const AddSongs = () => {
           })}
         </select>
         {errors.genre && <p className="text-red-500">{errors.genre.message}</p>}
+        <div className="mt-5">
+          <input type="hidden" {...register("image")} />
+
+          {/* // eslint-disable-next-line 
+      // @ts-ignore */}
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={(res: any) => {
+              // Do something with the response
+              setValue("image", res[0].url);
+              toast.success("Upload Completed");
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
+            }}
+          />
+          {errors.image && (
+            <p className="text-red-500">{errors.image.message}</p>
+          )}
+        </div>
       </div>
-      <button
-        type="submit"
-        className="text-white bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-blue-800"
-      >
-        Submit
-      </button>
+      <div className="w-full">
+        <button
+          type="submit"
+          className="text-white disabled:cursor-not-allowed w-full mx-auto inset-0 mb-5 bg-primary hover:bg-primaryHover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-blue-800"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

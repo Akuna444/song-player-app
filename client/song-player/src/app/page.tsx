@@ -16,7 +16,9 @@ export default function Home() {
   const page = searchParams?.get("page") || 1;
   const q = searchParams?.get("q") || "";
 
+  // @ts-ignore
   const { data, error, isLoading } = useGetSongsQuery({ page, q, genre });
+  console.log(data, "da");
 
   if (error) {
     toast.error("Failed to fetch");
@@ -63,7 +65,7 @@ export default function Home() {
             (data.songs?.length === 0 ? (
               <h3>No Songs Found</h3>
             ) : (
-              <Table count={1} songs={data?.songs} />
+              <Table count={data?.count} songs={data?.songs} />
             ))}
         </>
       )}

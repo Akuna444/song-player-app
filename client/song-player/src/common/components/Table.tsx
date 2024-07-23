@@ -5,6 +5,7 @@ import { Song } from "../types/songs";
 import { FaPen, FaEye, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import Pagination from "./Pagination";
+import Image from "next/image";
 
 interface SongListProps {
   count: number;
@@ -32,6 +33,9 @@ const Table: React.FC<SongListProps> = (props) => {
                   key={song._id}
                   className="bg-primary flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0"
                 >
+                  <th className="p-3 text-left max-sm:h-[120px] w-[110px]">
+                    Cover
+                  </th>
                   <th className="p-3 text-left w-[110px]">Title</th>
                   <th className="p-3 text-left w-[110px]">Artist</th>
                   <th className="p-3 text-left w-[110px]">Album</th>
@@ -49,6 +53,15 @@ const Table: React.FC<SongListProps> = (props) => {
                   className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0"
                 >
                   <td className="border-grey-light border hover:bg-gray-100 p-3">
+                    <Image
+                      className="rounded-full object-cover w-[100px] h-[100px]"
+                      src={song.image}
+                      alt={song.title}
+                      width={100}
+                      height={100}
+                    />
+                  </td>
+                  <td className="border-grey-light border hover:bg-gray-100 p-3">
                     {song.title}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
@@ -60,7 +73,7 @@ const Table: React.FC<SongListProps> = (props) => {
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
                     {song.genre}
                   </td>
-                  <td className=" flex gap-6 border-grey-light border hover:bg-gray-100 p-3  hover:font-medium cursor-pointer">
+                  <td className=" flex items-center h-full gap-6 border-grey-light border hover:bg-gray-100 p-3  hover:font-medium cursor-pointer">
                     <Link href={`/${song._id}`}>
                       <FaEye className="text-green-400 hover:text-green-700" />{" "}
                     </Link>

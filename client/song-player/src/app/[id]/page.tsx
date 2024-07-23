@@ -18,13 +18,13 @@ const Detail = () => {
       ) : (
         <div className="max-w-sm mx-auto section-padding bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
-            {/* <Image
+            <Image
               width={400}
               height={400}
               className="rounded-t-lg"
-              src="docs/images/blog/image-1.jpg"
-              alt="alt"
-            /> */}
+              src={song.image}
+              alt={song.title}
+            />
           </a>
           <div className="p-5">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

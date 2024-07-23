@@ -2,6 +2,7 @@ import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Pagination = ({ count }: { count: number }) => {
+  console.log("ount", count);
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -9,15 +10,17 @@ const Pagination = ({ count }: { count: number }) => {
   const page = searchParams.get("page") || "1";
 
   const params = new URLSearchParams(searchParams);
-  const ITEM_PER_PAGE = 10;
+  const ITEM_PER_PAGE = 5;
 
   const hasPrev = ITEM_PER_PAGE * (parseInt(page) - 1) > 0;
   const hasNext = ITEM_PER_PAGE * (parseInt(page) - 1) + ITEM_PER_PAGE < count;
 
   const handleChangePage = (type: string) => {
     type === "prev"
-      ? params.set("page", parseInt(page) - 1)
-      : params.set("page", parseInt(page) + 1);
+      ? // @ts-ignore
+        params.set("page", parseInt(page) - 1)
+      : // @ts-ignore
+        params.set("page", parseInt(page) + 1);
     replace(`${pathname}?${params}`);
   };
   return (
