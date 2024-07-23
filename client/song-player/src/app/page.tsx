@@ -9,7 +9,6 @@ import Stats from "@/common/components/Stats";
 import Button from "@/common/components/Button";
 import HomeSkeleton from "@/common/components/Skeletons/HomeSkeleton";
 import toast from "react-hot-toast";
-import { Suspense } from "react";
 
 export default function Home() {
   const [genre, setGenre] = useState<string>("");
@@ -58,9 +57,9 @@ export default function Home() {
                 })}
               </select>
             </div>
-            <Suspense>
-              <Search />
-            </Suspense>
+
+            <Search />
+
             <Button link="create" title="Add New" />
           </div>
           {data &&
