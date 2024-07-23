@@ -10,7 +10,7 @@ const baseQuery = fetchBaseQuery({
 export const songApi = createApi({
   reducerPath: "songApi",
   baseQuery: baseQuery,
-  tagTypes: ["Song"],
+  tagTypes: ["Song", "Stats"],
   endpoints: (builder) => ({
     getSongs: builder.query<
       { count: number; songs: Song[] },
@@ -30,7 +30,7 @@ export const songApi = createApi({
         method: "POST",
         body: newSong,
       }),
-      invalidatesTags: ["Song"],
+      invalidatesTags: ["Song", "Stats"],
     }),
     updateSong: builder.mutation({
       query: ({ id, ...updatedSong }) => ({
@@ -38,17 +38,18 @@ export const songApi = createApi({
         method: "PUT",
         body: updatedSong,
       }),
-      invalidatesTags: ["Song"],
+      invalidatesTags: ["Song", "Stats"],
     }),
     deleteSong: builder.mutation({
       query: (id) => ({
         url: `/songs/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Song"],
+      invalidatesTags: ["Song", "Stats"],
     }),
     getStatistics: builder.query({
       query: () => "/statistics",
+      providesTags: ["Stats"],
     }),
     // Add more endpoints as needed
   }),
@@ -63,46 +64,3 @@ export const {
   useDeleteSongMutation,
   useGetStatisticsQuery,
 } = songApi;
-
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// export const songApi = createApi({
-//   reducerPath: "songApi",
-//   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
-//   endpoints: (builder) => ({
-//     getSongs: builder.query({
-//       query: () => "/songs",
-//     }),
-//     createSong: builder.mutation({
-//       query: (newSong) => ({
-//         url: "/songs",
-//         method: "POST",
-//         body: newSong,
-//       }),
-//     }),
-//     updateSong: builder.mutation({
-//       query: ({ id, ...updatedSong }) => ({
-//         url: `/songs/${id}`,
-//         method: "PUT",
-//         body: updatedSong,
-//       }),
-//     }),
-//     deleteSong: builder.mutation({
-//       query: (id) => ({
-//         url: `/songs/${id}`,
-//         method: "DELETE",
-//       }),
-//     }),
-//     getStatistics: builder.query({
-//       query: () => "/statistics",
-//     }),
-//   }),
-// });
-
-// export const {
-//   useGetSongsQuery,
-//   useCreateSongMutation,
-//   useUpdateSongMutation,
-//   useDeleteSongMutation,
-//   useGetStatisticsQuery,
-// } = songApi;
