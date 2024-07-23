@@ -9,6 +9,7 @@ const Search = () => {
   const handleSearch = useDebouncedCallback((e) => {
     const params = new URLSearchParams(searchParams);
 
+    // @ts-ignore
     params.set("page", 1);
 
     if (e.target.value) {
