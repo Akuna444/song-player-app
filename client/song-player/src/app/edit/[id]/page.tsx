@@ -59,7 +59,7 @@ const EditSongs = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto">
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm section-padding mx-auto">
       {isLoading ? (
         <Spinner />
       ) : (
