@@ -10,12 +10,14 @@ const baseQuery = fetchBaseQuery({
 export const songApi = createApi({
   reducerPath: "songApi",
   baseQuery: baseQuery,
+  tagTypes: ["Song"],
   endpoints: (builder) => ({
     getSongs: builder.query<
       { count: number; songs: Song[] },
       { page: number; q: string; genre: string }
     >({
       query: ({ page, q, genre }) => `songs?page=${page}&q=${q}&genre=${genre}`,
+      providesTags: ["Song"],
     }),
     getSong: builder.query({
       query: (id) => ({
@@ -28,6 +30,7 @@ export const songApi = createApi({
         method: "POST",
         body: newSong,
       }),
+      invalidatesTags: ["Song"],
     }),
     updateSong: builder.mutation({
       query: ({ id, ...updatedSong }) => ({
@@ -35,12 +38,14 @@ export const songApi = createApi({
         method: "PUT",
         body: updatedSong,
       }),
+      invalidatesTags: ["Song"],
     }),
     deleteSong: builder.mutation({
       query: (id) => ({
         url: `/songs/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Song"],
     }),
     getStatistics: builder.query({
       query: () => "/statistics",

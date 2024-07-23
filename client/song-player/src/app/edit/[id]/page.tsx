@@ -24,7 +24,7 @@ type FormFields = z.infer<typeof songSchema>;
 
 const EditSongs = () => {
   const { id } = useParams();
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -36,6 +36,7 @@ const EditSongs = () => {
   });
 
   const { data: song, error, isLoading } = useGetSongQuery(id);
+
   if (song) {
     setValue("title", song.title);
     setValue("artist", song.artist);
@@ -50,7 +51,7 @@ const EditSongs = () => {
     const res = await updateSong({ id, ...data });
     if (res) {
       toast.success("Updated Successfully");
-      window.location.href = "/";
+      router.push("/");
     }
   };
   return (

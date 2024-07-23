@@ -16,10 +16,7 @@ const Table: React.FC<SongListProps> = (props) => {
   const [deleteSong] = useDeleteSongMutation();
 
   async function deleteSongHandler(id: string) {
-    const res = await deleteSong(id);
-    if (res) {
-      window.location.reload();
-    }
+    await deleteSong(id);
   }
 
   return (

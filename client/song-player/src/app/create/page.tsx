@@ -7,6 +7,7 @@ import { useCreateSongMutation } from "@/lib/services/api";
 import { genres } from "@/constants/genres";
 import toast from "react-hot-toast";
 import { UploadButton } from "@uploadthing/react";
+import { useRouter } from "next/navigation";
 
 const songSchema = z.object({
   title: z.string().nonempty("Title is required"),
@@ -19,6 +20,7 @@ const songSchema = z.object({
 type FormFields = z.infer<typeof songSchema>;
 
 const AddSongs = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -36,7 +38,7 @@ const AddSongs = () => {
 
     if (res) {
       toast.success("Successfully created");
-      window.location.href = "/";
+     router.push("/")
     }
   };
   return (

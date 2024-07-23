@@ -6,7 +6,6 @@ import Stats from "@/common/components/Stats";
 
 const Statistics = () => {
   const { data: stats, isLoading, error } = useGetStatisticsQuery("");
-  console.log(stats);
 
   return (
     <div className="section-padding">
