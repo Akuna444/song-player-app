@@ -33,7 +33,7 @@ const Table: React.FC<SongListProps> = (props) => {
                   key={song._id}
                   className="bg-primary flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0"
                 >
-                  <th className="p-3 text-left max-sm:h-[120px] w-[110px]">
+                  <th className="p-3 text-left max-sm:h-[115px] w-[110px]">
                     Cover
                   </th>
                   <th className="p-3 text-left w-[110px]">Title</th>
