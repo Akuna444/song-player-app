@@ -6,10 +6,15 @@ import Spinner from "@/common/components/Spinner";
 import Image from "next/image";
 import { FaPen } from "react-icons/fa";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const Detail = () => {
   const { id } = useParams();
   const { data: song, error, isLoading } = useGetSongQuery(id);
+
+  if(error){
+    toast.error("Something went wrong")
+  }
 
   return (
     <div>

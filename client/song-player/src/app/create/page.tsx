@@ -20,7 +20,7 @@ const songSchema = z.object({
 type FormFields = z.infer<typeof songSchema>;
 
 const AddSongs = () => {
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -38,7 +38,7 @@ const AddSongs = () => {
 
     if (res) {
       toast.success("Successfully created");
-     router.push("/")
+      router.push("/");
     }
   };
   return (
@@ -125,7 +125,7 @@ const AddSongs = () => {
             }}
             onUploadError={(error: Error) => {
               // Do something with the error.
-              alert(`ERROR! ${error.message}`);
+              toast.error("Failed to upload");
             }}
           />
           {errors.image && (

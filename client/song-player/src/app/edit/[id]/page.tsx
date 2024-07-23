@@ -37,6 +37,10 @@ const EditSongs = () => {
 
   const { data: song, error, isLoading } = useGetSongQuery(id);
 
+  if (error) {
+    toast.error("Something went wrong");
+  }
+
   if (song) {
     setValue("title", song.title);
     setValue("artist", song.artist);
@@ -146,7 +150,7 @@ const EditSongs = () => {
                   }}
                   onUploadError={(error: Error) => {
                     // Do something with the error.
-                    alert(`ERROR! ${error.message}`);
+                    toast.error("Failed to upload!")
                   }}
                 />
                 {errors.image && (

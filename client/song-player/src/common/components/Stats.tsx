@@ -1,9 +1,13 @@
 "use client";
+import toast from "react-hot-toast";
 import StatSkeleton from "./Skeletons/StatSkeleton";
 import StatCard from "./StatCard";
 import { useGetStatisticsQuery } from "@/lib/services/api";
 const Stats = () => {
   const { data: stats, isLoading, error } = useGetStatisticsQuery("");
+  if(error){
+    toast.error("Something went wrong")
+  }
   return (
     <>
       {isLoading ? (
