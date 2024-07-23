@@ -11,12 +11,16 @@ const Stats = () => {
           <StatSkeleton />
         </>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-5 my-5">
-          <StatCard title={"Total Albums"} count={stats.totalAlbums} />
-          <StatCard title={"Total Artist"} count={stats.totalArtists} />
-          <StatCard title={"Total Generes"} count={stats.totalGenres} />
-          <StatCard title={"Total Song"} count={stats.totalSongs} />{" "}
-        </div>
+        <>
+          {stats && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-5 my-5">
+              <StatCard title={"Total Albums"} count={stats.totalAlbums} />
+              <StatCard title={"Total Artist"} count={stats.totalArtists} />
+              <StatCard title={"Total Generes"} count={stats.totalGenres} />
+              <StatCard title={"Total Song"} count={stats.totalSongs} />{" "}
+            </div>
+          )}{" "}
+        </>
       )}
     </>
   );
